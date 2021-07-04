@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ form.non__field_errors }}
+<form action="/authors/update/{{author_id}}/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Редагувати автора</button>
+</form>
+{% endblock %}

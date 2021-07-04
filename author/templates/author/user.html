@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ title }}</h1>
+
+<div>
+    <p>id: {{info.id}}</p>
+    <p>Імя: {{info.name}}</p>
+    <p>Прізвище: {{info.surname}}</p>
+    <p>По батькові: {{info.patronymic}}</p>
+        <p>Книжку автора: </p>
+        <ul>
+            {% if not books %}
+            <p>Автор ще нічого не написав</p>
+            {% endif %}
+    {% for item in books %}
+            <li><a href="/books/{{item.id}}"> {{ item.name }}</a></li>
+    {% endfor %}
+        </ul>
+
+</div>
+
+<a href="./">До списку авторів</a>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>
+    <a href="create/"><img src="/images/create.png"> Створити </a>
+</h3>
+<div>
+    <table>
+        <caption>{{ title }}</caption>
+            <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Patronymic</th>
+            <th>Books</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+            </tr>
+            {% for author in list_authors %}
+                <tr class="{% cycle 'grey' 'white' %}">
+            <td><a href="{{author.id}}"> {{author.id}}</a></td>
+            <td><a href="{{author.id}}"> {{author.name}}</a></td>
+            <td><a href="{{author.id}}"> {{author.surname}}</a></td>
+            <td><a href="{{author.id}}"> {{author.patronymic}}</a></td>
+            <td><a href="{{author.id}}"> <img src="/images/read.png" height="30" alt="Details"></a></td>
+            <td><a href="update/{{author.id}}"> <img src="/images/update.png" height="30" alt="Update"></a></td>
+            <td><a href="delete/{{author.id}}"> <img src="/images/delete.png" height="30" alt="Delete"></a></td>
+                </tr>
+            {% endfor %}
+    </table>
+
+</div>
+{% endblock %}

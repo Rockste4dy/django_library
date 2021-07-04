@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>
+    <a href="create/"><img src="/images/create.png"> Створити </a>
+</h3>
+<div>
+    <table>
+        <caption>{{ title }}</caption>
+            <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+            </tr>
+            {% for user in list_users %}
+                <tr class="{% cycle 'grey' 'white' %}">
+            <td ><a href="{{user.id}}"> {{user.id}}</a></td>
+            <td><a href="{{user.id}}"> {{user.first_name}}</a></td>
+            <td><a href="{{user.id}}"> {{user.middle_name}}</a></td>
+            <td><a href="{{user.id}}"> {{user.last_name}}</a></td>
+            <td><a href="{{user.id}}"> <img src="/images/read.png" height="30" alt="Details"></a></td>
+            <td><a href="update/{{user.id}}"> <img src="/images/update.png" height="30" alt="Update"></a></td>
+            <td><a href="delete/{{user.id}}"> <img src="/images/delete.png" height="30" alt="Delete"></a></td>
+                </tr>
+            {% endfor %}
+    </table>
+
+</div>
+{% endblock %}

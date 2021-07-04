@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>
+    <a href="{% url 'create_book' %}"><img src="/images/create.png"> Створити </a>
+</h3>
+<div>
+    <table>
+        <caption>{{ title }}</caption>
+            <tr>
+            <th><a href="?order_by=id">ID</a></th>
+            <th><a href="?order_by=name">Назва</a></th>
+            <th><a href="?order_by=description">Опис</a></th>
+            <th><a href="?order_by=count">На складі</a></th>
+            <th>На руках</th>
+            <th>Authors</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+            </tr>
+            {% for book in list_books %}
+                <tr class="{% cycle 'grey' 'white' %}">
+            <td>{{book.id}}</td>
+            <td><a href="{% url 'read_book' book.id %}"> {{book.name}}</a></td>
+            <td>{{book.description}}</td>
+            <td>{{book.count}}</td>
+            <td><a href="/orders/search/?answer={{book.name}}"> {{book.order_set.all|length}}</a></td>
+            <td><a href="{% url 'read_book' book.id %}">
+                {% for author in book.authors.all%}
+                <p><a href="/authors/{{author.id}}">{{author}}</a>  </p>
+                {% endfor %}
+            </a></td>
+            <td><a href="{% url 'read_book' book.id %}"> <img src="/images/read.png" height="30" alt="Details"></a></td>
+            <td><a href="{% url 'update_book' book.id %}">
+                <img src="/images/update.png" height="30" alt="Update"></a></td>
+            <td><a href="{% url 'delete_book' book.id %}">
+                <img src="/images/delete.png" height="30" alt="Delete"></a></td>
+                </tr>
+            {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}

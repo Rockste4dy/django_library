@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ form.non__field_errors }}
+<form action="{% url 'update_book' book_id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Редагувати книжку</button>
+</form>
+{% endblock %}

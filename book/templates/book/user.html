@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ title }}</h1>
+
+<div>
+                            {% if info.cover %}
+    
+<img src="{{ info.cover.url }}" alt="" width="350" class="cover">
+{% else %}
+<img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" class="cover">
+{% endif %}
+    
+    <p>id: {{info.id}}</p>
+    <p>Імя: {{info.name}}</p>
+    <p>Опис: {{info.description}}</p>
+    <p>Кількість: {{info.count}}</p>
+    <p>Автори: </p>
+        {% for author in info.authors.all%}
+    <ul>
+        <li><a href="\authors\{{author.id}}"> {{ author }}</a></li>
+    {% endfor %}
+        </ul>
+    <p>Книжку замовили: </p>
+        <ul>
+            {% if not users %}
+            <p>Книжку ще ніхто не замовив</p>
+            {% endif %}
+    {% for item in users %}
+    <li><a href="\users\{{item.id}}"> {{ item }}</a></li>
+    {% endfor %}
+        </ul>
+</div>
+</br>
+<a href="{% url 'books' %}">До списку книжок</a>
+{% endblock %}

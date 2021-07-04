@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ title }}</h1>
+
+<div>
+    <p>id: {{info.id}}</p>
+    <p>Імя: <a href="/users/{{info.user.id}}">{{info.user}}</a></p>
+    <p>Книжка: <a href="/books/{{info.book.id}}">{{info.book}}</a></p>
+    <p>Створено: {{info.created_at}}</p>
+    <p>Завершено: {{end_at}}</p>
+    <p>Завершити до: {{info.plated_end_at}}</p>
+</div>
+
+<a href="./">До списку замовлень</a>
+{% endblock %}
